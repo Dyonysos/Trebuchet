@@ -16,6 +16,7 @@ headerTemplate.innerHTML = `
 	  color: white;
 	  text-align: center;
 	  padding: 14px 80px;
+	  width: 15%;
 	  text-decoration: none;
 	}
 
@@ -30,42 +31,12 @@ headerTemplate.innerHTML = `
 	  border: none;
 	  outline: none;
 	  color: white;
-	  padding: 14px 80px;
+	  padding: 14px 175px;
 	  background-color: inherit;
 	  font-family: inherit;
 	  margin: 0;
 	}
-	.navbar {
-	  overflow: hidden;
-	  background-color: #333;
-	  font-family: "Times New Roman", Times, serif;
-	}
 
-	.navbar a {
-	  float: left;
-	  font-size: 16px;
-	  color: white;
-	  text-align: center;
-	  padding: 14px 80px;
-	  text-decoration: none;
-	}
-
-
-	.subnav {
-	  float: left;
-	  overflow: hidden;
-	}
-
-	.subnav .subnavbtn {
-	  font-size: 16px;  
-	  border: none;
-	  outline: none;
-	  color: white;
-	  padding: 14px 80px;
-	  background-color: inherit;
-	  font-family: inherit;
-	  margin: 0;
-	}
 
 	.navbar a:hover, .subnav:hover .subnavbtn {
 	  background-color: black;
