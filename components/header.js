@@ -72,8 +72,8 @@ headerTemplate.innerHTML = `
       <div class="subnav">
         <button class="subnavbtn">Gallery <i class="fa fa-caret-down"></i></button>
         <div class="subnav-content">
-          <a href="#pictures">Pictures</a>
-          <a href="./videos_25_June_2023.html">Videos</a>
+          <a href="./pictures.html">Pictures</a>
+          <a href="./videos.html">Videos</a>
         </div>
       </div> 
       <div class="subnav">

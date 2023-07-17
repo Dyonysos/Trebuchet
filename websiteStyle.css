@@ -196,3 +196,15 @@ li a:hover {
 }
 
 
+
+.responsive {
+  width: auto;
+  height: 60%;
+}
+
+.responsiveVideo {
+  width: auto;
+  height: 50%;
+}
+
+
