@@ -83,7 +83,7 @@ headerTemplate.innerHTML = `
           <a href="#trebuchetMotion">Trebuchet Motion</a>
         </div>
       </div> 
-      <a href="#contact">Contact</a>
+      <a href="mailto:trebuchetdubulbe@gmail.com ?subject=Trebuchet">Contact</a>
     </div>
   </header>
 `;

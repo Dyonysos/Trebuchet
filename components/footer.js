@@ -50,7 +50,7 @@ footerTemplate.innerHTML = `
     <ul>
       <li><a href="about.html">About</a></li>
       <li><a href="work.html">Work</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mailto:trebuchetdubulbe@gmail.com ?subject=Trebuchet">Contact</a></li>
     </ul>
     <ul class="social-row">
       <li><a href="https://github.com/nicolasdavister/Trebuchet" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
