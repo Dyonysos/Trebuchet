@@ -125,16 +125,6 @@ li a:hover {
   clear: both;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    height: auto;
-  }
-}
-
-
-
 .responsive {
   width: auto;
   height: 60%;
@@ -142,8 +132,33 @@ li a:hover {
 
 
 video {
-  max-width: 100%;
-  height: auto;
+  width:"100";
   margin-bottom: 15px;
+}
+
+
+@media screen and (max-width: 600px) {
+  /* Styles for screens with a maximum width of 600px (typically mobile devices) */
+
+  video::-webkit-media-controls {
+    /* Adjust the styles for controls on smaller screens */
+    padding: 4px;
+    font-size: 12px;
+  }
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .column {
+    width: 100%;
+    height: auto;
+  }
+
+  video {
+    /* Make the video responsive */
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
 }
 

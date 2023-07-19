@@ -15,7 +15,7 @@ headerTemplate.innerHTML = `
 	  font-size: 16px;
 	  color: white;
 	  text-align: center;
-	  padding: 14px 80px;
+	  padding: 14px 50px;
 	  width: 15%;
 	  text-decoration: none;
 	}
@@ -31,7 +31,7 @@ headerTemplate.innerHTML = `
 	  border: none;
 	  outline: none;
 	  color: white;
-	  padding: 14px 175px;
+	  padding: 14px 60px;
 	  background-color: inherit;
 	  font-family: inherit;
 	  margin: 0;
@@ -65,6 +65,50 @@ headerTemplate.innerHTML = `
 	.subnav:hover .subnav-content {
 	  display: block;
 	}
+
+
+	@media screen and (max-width: 600px) {
+	    /* Styles for screens with a maximum width of 600px (typically mobile devices) */
+
+	    .navbar {
+      	/* Adjust the font size and padding to fit the smaller screen */
+    	  font-size: 14px;
+    	}
+
+	    .navbar a {
+	      /* Adjust the width and padding to fit the smaller screen */
+	      padding: 14px 20px;
+	      width: auto;
+	    }
+
+		.subnav {
+		  float: left;
+		  overflow: hidden;
+		}
+
+	    .subnav .subnavbtn {
+	      /* Adjust the padding to fit the smaller screen */
+	      padding: 14px 20px;
+	    }
+
+
+
+	.navbar a:hover, .subnav:hover .subnavbtn {
+	  background-color: black;
+	}
+
+	.subnav-content a {
+	  float: left;
+	  color: white;
+	  text-decoration: none;
+	}
+
+	.subnav-content a:hover {
+	  background-color: #333;
+	  color: white;
+	}
+
+
   </style>
   <header>
     <div class="navbar">

@@ -385,13 +385,13 @@ end
 
 
 
-step    = 4;
+step    = 5;
 start   = step*2;
-t_pause = 0.001;
+t_pause = 1e-8;
 stopMotion1 = false;
 
 subplot(4,3,subPlotId(1,:));
-[x_p_down, y_p_down, x_p_up, y_p_up] = safeLine(x_p(1:100), y_p(1:100), r_p*5);
+[x_p_down, y_p_down, x_p_up, y_p_up] = safeLine(x_p(1:100), y_p(1:100), r_p*3);
 for k=1:length(y_p_down)
     y_p_down(k) = max(0, y_p_down(k));
 end
@@ -405,7 +405,25 @@ coord_low     = [x_p_up,y_p_up];
 coord_combine = [coord_up;flipud(coord_low)];
 dangerArea = fill(coord_combine(:,1),coord_combine(:,2),[.7 .7 .7]);
 uistack(dangerArea,'bottom')
-pause(5);
+
+
+coord_circle_weight_x = linspace(-2.44, 2.44, 1001)';
+coord_circle_weight_y_down = zeros(length(coord_circle_weight_x),1);
+coord_circle_weight_y_up = zeros(length(coord_circle_weight_x),1);
+for k=1 : length(coord_circle_weight_x)
+    coord_circle_weight_y_down(k) = h - sqrt(2.44.^2 - coord_circle_weight_x(k).^2);
+    coord_circle_weight_y_up(k)   = h + sqrt(2.44.^2 - coord_circle_weight_x(k).^2);
+end
+dangerCircle_down = plot(coord_circle_weight_x, coord_circle_weight_y_down, 'Color', [.7 .7 .7]); 
+dangerCircle_up   = plot(coord_circle_weight_x, coord_circle_weight_y_up, 'Color', [.7 .7 .7]); 
+
+coord_circle_up      = [coord_circle_weight_x, coord_circle_weight_y_down];
+coord_circle_low     = [coord_circle_weight_x,coord_circle_weight_y_up];
+coord_circle_combine = [coord_circle_up;flipud(coord_circle_low)];
+dangerCircleArea = fill(coord_circle_combine(:,1),coord_circle_combine(:,2),[.7 .7 .7]);
+uistack(dangerCircleArea,'bottom')
+
+pause(0);
 for k=start:step: length(t)
 
     tic
@@ -427,6 +445,15 @@ for k=start:step: length(t)
         end
         
         if (n~=1 && n~=2 && n~=4) || ( n==1 && ~stopMotion1)
+            if x_a(k) < x_p(k) && ~stopMotion1
+                subplot(4,3,subPlotId(1,:));
+                armArea = fill([ -4 -4 x_a(1) 0 x_a(1) ], [h*1.5 0 0 h*1.5 h*1.5 ], [.7 .7 .7]);
+                armArea.EdgeColor = [.7 .7 .7];
+                uistack(armArea, 'bottom')
+                slingArea = fill([x_a(k) x_a(k) x_p(k) x_p(k)], [0 y_a(k) y_p(k) 0], [.7 .7 .7]);
+                slingArea.EdgeColor = [.7 .7 .7];
+                uistack(slingArea, 'bottom')
+            end
             % Moving Lines and Points
             set(armLine(n),            'XData',[ x_a(k) , x_b(k)],  'YData',[y_a(k) , y_b(k)] );
             set(counterweightLine(n),  'XData',[ x_b(k) , x_c(k)],  'YData',[y_b(k) , y_c(k)] );
@@ -468,6 +495,5 @@ for k=start:step: length(t)
     end
     drawnow
     tStop = toc;
-    
     pause(max( (t(k) - t(k-step) - tStop)*0.2  , t_pause))
 end
