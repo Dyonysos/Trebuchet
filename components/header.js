@@ -2,133 +2,177 @@
 const headerTemplate = document.createElement('template');
 
 headerTemplate.innerHTML = `
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style>
-    .navbar {
-	  overflow: hidden;
-	  background-color: #333;
-	  font-family: "Times New Roman", Times, serif;
+   
+	header ul{
+		list-style: none;
+		margin:0;
+		padding:0;
 	}
-
-	.navbar a {
-	  float: left;
-	  font-size: 16px;
-	  color: white;
-	  text-align: center;
-	  padding: 14px 50px;
-	  width: 15%;
-	  text-decoration: none;
+	header li{
+		margin:0;
+		padding:0;
 	}
-
-
-	.subnav {
-	  float: left;
-	  overflow: hidden;
-	}
-
-	.subnav .subnavbtn {
-	  font-size: 16px;  
-	  border: none;
-	  outline: none;
-	  color: white;
-	  padding: 14px 60px;
-	  background-color: inherit;
-	  font-family: inherit;
-	  margin: 0;
+	header a{
+		text-decoration:none;
 	}
 
 
-	.navbar a:hover, .subnav:hover .subnavbtn {
-	  background-color: black;
+	.hamburger{
+		cursor: pointer;
+		float: right;
+		padding: 22px 20px;
 	}
 
-	.subnav-content {
-	  display: none;
-	  position: absolute;
-	  left: 0;
-	  background-color: black;
-	  width: 100%;
-	  z-index: 1;
+	.hamburger-line {
+		background: white;
+		display: block;
+		height: 2px;
+		position: relative;
+		width: 24px;
 	}
 
-	.subnav-content a {
-	  float: left;
-	  color: white;
-	  text-decoration: none;
+	.hamburger-line::before,
+	.hamburger-line::after{
+		background: white;
+		content: '';
+		display: block;
+		height: 100%;
+		position: absolute;
+		transition: all .2s ease-out;
+		width: 100%;
+	}
+	.hamburger-line::before{
+		top: 5px;
+	}
+	.hamburger-line::after{
+		top: -5px;
 	}
 
-	.subnav-content a:hover {
-	  background-color: #333;
-	  color: white;
+	.side-menu:checked ~ nav{
+		max-height: 100%;
+	}
+	.side-menu:checked ~ .hamburger .hamburger-line {
+		background: transparent;
+	}
+	.side-menu:checked ~ .hamburger .hamburger-line::before {
+		transform: rotate(-45deg);
+		top:0;
+	}
+	.side-menu:checked ~ .hamburger .hamburger-line::after {
+		transform: rotate(45deg);
+		top:0;
+	}
+	#side-menu{
+		display : none;
 	}
 
-	.subnav:hover .subnav-content {
-	  display: block;
+	header{
+		background:rgb(51, 51, 51);
+		color:white;
+		height:46px;
+		position: sticky;
+		top: 0;
+		width: 100%;
+	}
+	.nav{
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background-color: rgb(51, 51, 51);
+		overflow: hidden;
+	
+	}
+	.menu a{
+		display: block;
+		padding: 30px;
+		color: white;
 	}
 
+	.nav{
+		max-height: 0;
+		transition: max-height .5s ease-out;
+	}
+	.logo{
+		color:white;
 
-	@media screen and (max-width: 600px) {
-	    /* Styles for screens with a maximum width of 600px (typically mobile devices) */
+	}
+	.logo-image{
+		filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(87deg) brightness(119%) contrast(119%);
 
-	    .navbar {
-      	/* Adjust the font size and padding to fit the smaller screen */
-    	  font-size: 14px;
-    	}
+	}
+	.logo{
+		line-height:46px;
+		height:100%;
+		padding-left:70px;
+		position:relative;
+	}
+	.logo-image{
+		position:absolute;
+		left:10px;
+	}
+	@media (min-width: 768px) {
 
-	    .navbar a {
-	      /* Adjust the width and padding to fit the smaller screen */
-	      padding: 14px 20px;
-	      width: auto;
-	    }
 
-		.subnav {
-		  float: left;
-		  overflow: hidden;
+		header{
+			display: flex;
+			flex-direction: row;
+			align-items:stretch;
+			gap:20px;
+		}
+		.menu{
+			display: flex;
+			flex-direction: row;
+	
+			align-items:stretch;
+			height:100%;
+			gap:10px;
 		}
 
-	    .subnav .subnavbtn {
-	      /* Adjust the padding to fit the smaller screen */
-	      padding: 14px 20px;
-	    }
+		.menu li a{
+			padding:0;
+			line-height:46px;
+			height:100%;
+		}
+		.nav{
+			max-height: none;
+			top: 0;
+			position: relative;
+
+			width: fit-content;
+			background-color: transparent;
+		}
 
 
-
-	.navbar a:hover, .subnav:hover .subnavbtn {
-	  background-color: black;
+		.hamburger{
+			display:none
+		}
 	}
-
-	.subnav-content a {
-	  float: left;
-	  color: white;
-	  text-decoration: none;
-	}
-
-	.subnav-content a:hover {
-	  background-color: #333;
-	  color: white;
-	}
-
-
   </style>
   <header>
-    <div class="navbar">
-      <a href="./index.html">Home</a>
-      <div class="subnav">
-        <button class="subnavbtn">Gallery <i class="fa fa-caret-down"></i></button>
-        <div class="subnav-content">
-          <a href="./pictures.html">Pictures</a>
-          <a href="./videos.html">Videos</a>
-        </div>
-      </div> 
-      <div class="subnav">
-        <button class="subnavbtn">Simulation <i class="fa fa-caret-down"></i></button>
-        <div class="subnav-content">
-          <a href="#mathModel">Math Model</a>
-          <a href="#trebuchetMotion">Trebuchet Motion</a>
-        </div>
-      </div> 
-      <a href="mailto:trebuchetdubulbe@gmail.com ?subject=Trebuchet">Contact</a>
-    </div>
+	<input class="side-menu" type="checkbox" id="side-menu"/>
+	<label class="hamburger" for="side-menu"><span class="hamburger-line"></span></label>
+	<a class="logo" href="./index.html"><img class="logo-image" height="40px" src="./trebuchet.svg"> The trebuchet buffs</a>
+    <nav class="nav">
+		<ul class="menu">
+			
+			<li>
+				<a href="./pictures.html">Pictures</a>
+
+			</li>
+			<li>
+				<a href="./videos.html">Videos</a>
+			</li>
+
+			<li>
+				<a href="">Simulations</a>
+			</li>
+			<li>
+				<a href="mailto:trebuchetdubulbe@gmail.com ?subject=Trebuchet">Contact</a>
+			</li>
+		</ul>
+      
+    </nav>
   </header>
 `;
 
